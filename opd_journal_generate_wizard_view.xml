@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_opd_journal_generate_wizard_form" model="ir.ui.view">
+      <field name="name">opd.journal.generator.wizard.form</field>
+      <field name="model">opd.journal.generator.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Generate OPD Journals From OPD List">
+          <group>
+            <field name="opd_list" nolabel="1" placeholder="Paste OPD numbers here (one per line). Example: OPD-0412768"/>
+          </group>
+
+          <group col="4">
+            <field name="only_confirmed"/>
+            <field name="include_draft"/>
+          </group>
+
+          <group col="4">
+            <field name="cash_account_id"/>
+            <field name="journal_id"/>
+          </group>
+
+          <group col="4">
+            <field name="commit_every"/>
+          </group>
+
+          <footer>
+            <button string="Generate Journals"
+                    type="object"
+                    name="action_generate"
+                    class="oe_highlight"/>
+            <button string="Cancel" special="cancel" class="oe_link"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_opd_journal_generate_wizard" model="ir.actions.act_window">
+      <field name="name">Generate Missing OPD Journals</field>
+      <field name="res_model">opd.journal.generator.wizard</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+
+    <record id="menu_opd_journal_generate" model="ir.ui.menu">
+      <field name="name">Generate Missing OPD Journals</field>
+      <field name="parent_id" ref="custom_scripts.custom_script_ipe"/>
+      <field name="action" ref="action_opd_journal_generate_wizard"/>
+    </record>
+
+  </data>
+</openerp>

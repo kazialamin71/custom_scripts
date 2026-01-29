@@ -1,1 +1,2 @@
 import custom_script
+import opd_journal_generate_wizard
